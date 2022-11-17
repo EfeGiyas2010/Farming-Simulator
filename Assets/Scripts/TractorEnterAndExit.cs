@@ -9,7 +9,7 @@ public class TractorEnterAndExit : MonoBehaviour
     public Transform sp;
     TractorController Tractor;
     Flashlight flashlight;
-    public bool calýsýyor = false;
+    public bool calisiyor = false;
     public float closeDistance = 15f;
 
     [SerializeField] private SphereCollider _SphereCollider;
@@ -33,9 +33,9 @@ public class TractorEnterAndExit : MonoBehaviour
     {
         if (Input.GetKeyDown(KeyCode.E))
         {
-            if (calýsýyor)
+            if (calisiyor)
             {
-                Cýk();
+                Cik();
 
             }
 
@@ -87,7 +87,7 @@ public class TractorEnterAndExit : MonoBehaviour
 
     void Bin()
     {
-        calýsýyor = true;
+        calisiyor = true;
         Tractor.enabled = true;
         kam.SetActive(true);
         krkt.SetActive(false);
@@ -114,9 +114,9 @@ public class TractorEnterAndExit : MonoBehaviour
 
     }
 
-    void Cýk()
+    void Cik()
     {
-        calýsýyor = false;
+        calisiyor = false;
         Tractor.enabled = false;
         kam.SetActive(false);
         krkt.SetActive(true);
