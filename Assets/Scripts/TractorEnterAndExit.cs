@@ -9,8 +9,10 @@ public class TractorEnterAndExit : MonoBehaviour
     public Transform sp;
     TractorController Tractor;
     Flashlight flashlight;
-    public bool calýsýyor = false;
+    public bool ChangeThis = false;
+    public bool _IsNearby = false;
     public float closeDistance = 15f;
+    [SerializeField] private GameObject camera;
 
     [SerializeField] private SphereCollider _SphereCollider;
 
@@ -33,13 +35,13 @@ public class TractorEnterAndExit : MonoBehaviour
     {
         if (Input.GetKeyDown(KeyCode.E))
         {
-            if (calýsýyor)
+            if (ChangeThis)
             {
-                Cýk();
+                ChangeThisToo();
 
             }
 
-            else if (CarNearby())//if out of car
+            else if (_IsNearby)//if out of car
             {
                 Bin();
 
@@ -53,6 +55,7 @@ public class TractorEnterAndExit : MonoBehaviour
     {
         if (other.CompareTag("player"))
         {
+            _IsNearby = true;
             driveUI.SetActive(true);
         }
     }
@@ -62,6 +65,7 @@ public class TractorEnterAndExit : MonoBehaviour
     {
         if (other.CompareTag("player"))
         {
+            _IsNearby = false;
             driveUI.SetActive(false);
         }
     }
@@ -84,10 +88,13 @@ public class TractorEnterAndExit : MonoBehaviour
         }
         return false;
     }
+    
 
     void Bin()
     {
-        calýsýyor = true;
+        camera.SetActive(true);
+        Debug.Log("enter");
+        ChangeThis = true;
         Tractor.enabled = true;
         kam.SetActive(true);
         krkt.SetActive(false);
@@ -114,9 +121,10 @@ public class TractorEnterAndExit : MonoBehaviour
 
     }
 
-    void Cýk()
+    void ChangeThisToo()
     {
-        calýsýyor = false;
+        camera.SetActive(false);
+        ChangeThis = false;
         Tractor.enabled = false;
         kam.SetActive(false);
         krkt.SetActive(true);
